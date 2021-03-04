@@ -237,7 +237,7 @@ var AWSSignature4DynamicValue = function() {
             day = amzDay(now)
             daytime = day + 'T' + amzTime(now)
         }
-        var bodyHash = hash256(request.body || '')
+        var bodyHash = request.getHeaderByName('x-amz-content-sha256', false)
 
         // Search for other signed headers to include. We will assume any headers that begin with X-Amz-<*> will be included
         var headers = {} // The actual headers to sign
